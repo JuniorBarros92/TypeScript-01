@@ -1,13 +1,28 @@
-import _ from 'lodash';
-import Clipboard from 'clipboard';
+import fetchData from "./fetchData";
 
-document.addEventListener('DOMContentLoaded', () => {
-  const button = new Clipboard('button');
+type TransacaoPagamento =  "Boleto" | "Cartão de Crédito";
+type TransacaoStatus = "Paga" | "Recusada pela operadora de cartão" | "Aguardando pagamento" |  "Estornada" 
 
-  function handleSuccess(event: ClipboardJS.Event) {
-    console.log('Texto copiado.');
-    console.log(event.action);
-  }
 
-  button.on('success', handleSuccess);
-}); 
+
+interface TransacaoApi {
+Nome: string;
+ID: number;
+Data: string;
+Status: TransacaoStatus;
+Email: string;
+["Valor (R$)"]: string;
+["Forma de Pagamento"]: TransacaoPagamento 
+["Cliente Novo"]: number;
+
+}
+
+async function handleData() {
+  const data = await fetchData<TransacaoApi[]>("https://api.origamid.dev/json/transacoes.json");
+  data?.forEach((item) => {
+    console.log(item);
+  });
+}
+
+
+  handleData();
