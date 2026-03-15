@@ -1,5 +1,6 @@
 
 import moedaParaNumero from "./moedaParaNumero";
+import stringToDate from "./stringToDate";
 declare global {
   interface Window {
     transacaoApi: TransacaoApi;
@@ -23,7 +24,7 @@ export interface TransacaoApi {
 export interface TransacaoNormalizada {
   nome: string;
   id: number;
-  data: string;
+  data: Date;
   status: TransacaoStatus;
   email: string;
   valor: number | null;
@@ -53,7 +54,7 @@ export default function normalizarTransacao(transacao: TransacaoApi): TransacaoN
   return {
     nome: transacao.Nome,
     id: transacao.ID,
-    data: transacao.Data,
+    data:stringToDate(transacao.Data),
     status: transacao.Status,
     email: transacao.Email,
     valor: moedaParaNumero(transacao["Valor (R$)"]),
