@@ -4,7 +4,7 @@ import normalizarTransacao from "./normalizarTransacao";
 
 async function handleData() {
   const data = await fetchData<TransacaoApi[]>(
-    "https://api.origamid.dev/json/transacoes.json?_=" + Date.now(),
+    "https://api.origamid.dev/json/transacoes.json?_=" 
   );
 
   if (!data) return;
@@ -14,10 +14,12 @@ async function handleData() {
 }
 
 function preencherEstatisticas(transacoes: TransacaoNormalizada[]): void {
- const data = new Estatisticas(transacoes);
+
+  const estatisticas = new Estatisticas(transacoes);
+
  const totalElement = document.querySelector<HTMLElement>("#total span");
  if (totalElement) {
-   totalElement.innerText = data.total.toLocaleString("pt-BR", {
+   totalElement.innerText = estatisticas.total.toLocaleString("pt-BR", {
       style: "currency",
       currency: "BRL",
     });
