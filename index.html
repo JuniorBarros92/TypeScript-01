@@ -1,12 +1,59 @@
 <!doctype html>
-<html lang="en">
+<html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>projeto-typescript</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 2rem;
+        font-size: 1.25rem;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+      }
+      th {
+        background-color: #f2f2f2;
+      }
+      table tr:nth-child(even) {
+        background-color: ghostwhite;
+      }
+      p {
+        margin-left: 1rem;
+      }
+      h2 {
+        border-top: 6px solid ghostwhite;
+        padding-top: 1rem;
+      }
+      div {
+        border-top: 3px solid ghostwhite;
+      }
+    </style>
   </head>
+
   <body>
+    <h2>Dados</h2>
+    <table id="transacoes">
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Email</th>
+          <th>Compra</th>
+          <th>Pagamento</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody id="tabela-dados">
+      </tbody>
+    </table>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>
