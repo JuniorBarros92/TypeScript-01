@@ -1,3 +1,4 @@
+import { CountList, } from "./countBy";
 import fetchData from "./fetchData";
 import Estatisticas from "./Estatisticas";
 import normalizarTransacao from "./normalizarTransacao";
@@ -13,9 +14,22 @@ async function handleData() {
    preencherEstatisticas(transacoesNormalizadas);
 }
 
+function preencherLista(lista: CountList, containerId: string): void {
+  const containerElement = document.getElementById(containerId);
+  if (containerElement) {
+    Object.keys(lista).forEach((key) => {
+      containerElement.innerHTML += `<p>${key}: ${lista[key]}</p>`;
+    });
+  }
+}
+
 function preencherEstatisticas(transacoes: TransacaoNormalizada[]): void {
 
   const estatisticas = new Estatisticas(transacoes);
+
+   preencherLista(estatisticas.pagamento, "pagamento");
+  preencherLista(estatisticas.status, "status");
+
 
  const totalElement = document.querySelector<HTMLElement>("#total span");
  if (totalElement) {
