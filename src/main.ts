@@ -29,6 +29,7 @@ function preencherEstatisticas(transacoes: TransacaoNormalizada[]): void {
 
    preencherLista(estatisticas.pagamento, "pagamento");
   preencherLista(estatisticas.status, "status");
+ 
 
 
  const totalElement = document.querySelector<HTMLElement>("#total span");
@@ -37,6 +38,10 @@ function preencherEstatisticas(transacoes: TransacaoNormalizada[]): void {
       style: "currency",
       currency: "BRL",
     });
+  }
+   const diaElement = document.querySelector<HTMLElement>("#dia span");
+  if (diaElement) {
+    diaElement.innerText = estatisticas.melhorDia[0];
   }
 }
 
